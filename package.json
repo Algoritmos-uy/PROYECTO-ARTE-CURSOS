@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Plataforma creativa MVP",
   "main": "backend/server.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

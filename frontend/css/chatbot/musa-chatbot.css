@@ -1,0 +1,118 @@
+/* musa-chatbot.css
+   Estilos para el widget y launcher de MUSA
+   Soporte para tema claro y oscuro
+*/
+
+:root {
+    --musa-bg-light: #fff;
+    --musa-bg-dark: #222;
+    --musa-border-light: #e0e0e0;
+    --musa-border-dark: #444;
+    --musa-user-msg-bg: #e6f7ff;
+    --musa-musa-msg-bg: #f3e6ff;
+    --musa-primary: #7c3aed;
+    --musa-font: "Segoe UI", Arial, sans-serif;
+}
+
+body[data-theme="dark"] {
+    --musa-bg: var(--musa-bg-dark);
+    --musa-border: var(--musa-border-dark);
+}
+body[data-theme="light"],
+body:not([data-theme]) {
+    --musa-bg: var(--musa-bg-light);
+    --musa-border: var(--musa-border-light);
+}
+
+.musa-launcher {
+    border-radius: 50%;
+    background: var(--musa-bg);
+    border: 2px solid var(--musa-primary);
+    color: var(--musa-primary);
+    transition: box-shadow 0.2s;
+}
+.musa-launcher:hover {
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.2);
+}
+
+.musa-chatbot {
+    position: fixed;
+    bottom: 90px;
+    right: 24px;
+    width: 320px;
+    max-width: 90vw;
+    background: var(--musa-bg);
+    border: 1px solid var(--musa-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+    z-index: 1001;
+    font-family: var(--musa-font);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.musa-chatbox {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    background: var(--musa-bg);
+    min-height: 120px;
+    max-height: 240px;
+}
+
+.musa-user-msg {
+    background: var(--musa-user-msg-bg);
+    color: #333;
+    margin: 4px 0;
+    padding: 8px 12px;
+    border-radius: 12px;
+    align-self: flex-end;
+    max-width: 80%;
+}
+
+.musa-musa-msg {
+    background: var(--musa-musa-msg-bg);
+    color: #7c3aed;
+    margin: 4px 0;
+    padding: 8px 12px;
+    border-radius: 12px;
+    align-self: flex-start;
+    max-width: 80%;
+}
+
+.musa-chatbot h3 {
+    margin: 0;
+    padding: 12px;
+    background: var(--musa-primary);
+    color: #fff;
+    font-size: 1.1rem;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.musa-chatbot input {
+    border: 1px solid var(--musa-border);
+    border-radius: 8px;
+    padding: 8px;
+    margin: 8px;
+    font-size: 1rem;
+    outline: none;
+    background: var(--musa-bg);
+    color: inherit;
+}
+
+.musa-chatbot button {
+    margin: 8px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    background: var(--musa-primary);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.musa-chatbot button:hover {
+    background: #5b21b6;
+}

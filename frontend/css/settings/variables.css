@@ -1,0 +1,42 @@
+/* variables.css - Variables CSS para tema claro y oscuro */
+
+:root {
+    --color-bg: #fafafa;
+    --color-text: #222;
+    --color-primary: #7c3aed;
+    --color-secondary: #5b21b6;
+    --color-accent: #ffe7ff;
+    --color-navbar-bg: #7c3aed;
+    --color-navbar-text: #fff;
+    --color-footer-bg: #222;
+    --color-footer-text: #fff;
+    --color-card-bg: #fff;
+    --color-card-border: #e0e0e0;
+    --color-btn-bg: #7c3aed;
+    --color-btn-text: #fff;
+    --color-btn-hover: #5b21b6;
+    --color-musa-bg: #fff;
+    --color-musa-msg-bg: #f3e6ff;
+    --color-musa-user-bg: #e6f7ff;
+    --font-main: "Segoe UI", Arial, sans-serif;
+}
+
+body[data-theme="dark"] {
+    --color-bg: #18181b;
+    --color-text: #f3f3f3;
+    --color-primary: #a78bfa;
+    --color-secondary: #7c3aed;
+    --color-accent: #312e81;
+    --color-navbar-bg: #312e81;
+    --color-navbar-text: #f3f3f3;
+    --color-footer-bg: #18181b;
+    --color-footer-text: #a78bfa;
+    --color-card-bg: #232323;
+    --color-card-border: #444;
+    --color-btn-bg: #a78bfa;
+    --color-btn-text: #18181b;
+    --color-btn-hover: #7c3aed;
+    --color-musa-bg: #232323;
+    --color-musa-msg-bg: #312e81;
+    --color-musa-user-bg: #232323;
+}

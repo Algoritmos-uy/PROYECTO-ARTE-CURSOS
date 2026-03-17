@@ -105,3 +105,94 @@ En cada paso debes:
 * evitar crear funcionalidades no solicitadas
 
 El objetivo es construir un **MVP profesional, claro y escalable**.
+
+Actúa como un desarrollador frontend senior especializado en JavaScript modular (ES Modules) y arquitectura SPA sin frameworks.
+
+Debes implementar un sistema de navegación tipo SPA (Single Page Application) para este proyecto, respetando la arquitectura existente.
+
+Estructura obligatoria:
+
+frontend/js
+
+components
+
+* navbar.js
+
+pages
+
+* home.js
+* shop.js
+* courses.js
+* payments.js
+* contact.js
+* register.js
+
+utils
+
+* router.js
+
+main.js
+
+Requisitos:
+
+1. Implementar un router simple basado en hash (#) o history API.
+
+Rutas requeridas:
+
+/ → home
+/shop → tienda
+/courses → cursos
+/payments → pagos
+/contact → contacto
+/register → registro
+
+2. Crear un archivo router.js que:
+
+* detecte cambios de ruta
+* cargue dinámicamente la página correspondiente
+* renderice el contenido en un contenedor principal (#app)
+
+3. Cada archivo en /pages debe exportar una función:
+
+render()
+
+que devuelva el HTML de la vista.
+
+Ejemplo:
+
+export function render(){
+return `<section>Contenido</section>`
+}
+
+4. main.js debe:
+
+* inicializar la app
+* cargar navbar
+* iniciar router
+
+5. navbar.js debe:
+
+* renderizar enlaces de navegación
+* usar rutas compatibles con el router (sin recargar página)
+* manejar eventos de navegación
+
+6. La navegación NO debe recargar la página.
+
+7. Mantener separación de responsabilidades:
+
+* router → navegación
+* pages → vistas
+* components → UI reutilizable
+
+8. Usar JavaScript moderno (ES6+).
+9. Usar template literals.
+10. Código limpio, modular y comentado.
+
+Flujo esperado:
+
+usuario hace click en navbar
+→ router detecta ruta
+→ carga módulo correspondiente
+→ renderiza en #app
+
+Genera el código paso a paso por archivo.

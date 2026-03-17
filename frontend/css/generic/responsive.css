@@ -1,0 +1,40 @@
+/* responsive.css - Media queries para responsividad ITCSS */
+
+/* Móviles pequeños (min 390px, max 1024px) */
+@media (min-width: 390px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+    .navbar ul {
+        gap: 12px;
+    }
+    #app {
+        padding: 8px;
+    }
+}
+
+/* Tablets y laptops (1025px hasta 1200px) */
+@media (min-width: 1025px) and (max-width: 1200px) {
+    body {
+        font-size: 17px;
+    }
+    .navbar ul {
+        gap: 20px;
+    }
+    #app {
+        padding: 16px;
+    }
+}
+
+/* Pantallas grandes (mayor a 1200px) */
+@media (min-width: 1201px) {
+    body {
+        font-size: 18px;
+    }
+    .navbar ul {
+        gap: 24px;
+    }
+    #app {
+        padding: 24px;
+    }
+}

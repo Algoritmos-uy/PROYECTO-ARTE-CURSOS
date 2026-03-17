@@ -1,23 +1,23 @@
 // products.routes.js
-// Rutas CRUD de productos
+// Rutas REST estándar para productos
 
 const express = require('express');
 const router = express.Router();
 const productsController = require('../controllers/products.controller');
 
-// Obtener todos los productos
+// GET /api/products
 router.get('/', productsController.getAll);
 
-// Obtener producto por ID
+// GET /api/products/:id
 router.get('/:id', productsController.getById);
 
-// Crear producto
+// POST /api/products
 router.post('/', productsController.create);
 
-// Actualizar producto
+// PUT /api/products/:id
 router.put('/:id', productsController.update);
 
-// Eliminar producto
+// DELETE /api/products/:id
 router.delete('/:id', productsController.delete);
 
 module.exports = router;
