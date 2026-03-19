@@ -1,7 +1,7 @@
 // chatbot.js
 // Widget de chat para interactuar con MUSA
 
-import { sendMessageToMusa } from '../api/ai.api.js';
+import { sendMessageToMusa, sendMessageToMusaStream } from '../api/ai.api.js';
 
 /**
  * Crea el widget de chat MUSA y lo inserta en el DOM.
@@ -17,6 +17,16 @@ export function createMusaChatbot() {
   const chatBox = document.createElement('div');
   chatBox.className = 'musa-chatbox';
 
+  // Indicador de 'Musa está escribiendo'
+  const typingEl = document.createElement('div');
+  typingEl.className = 'musa-typing';
+  typingEl.style.display = 'none';
+  typingEl.setAttribute('role', 'status');
+  typingEl.setAttribute('aria-live', 'polite');
+  typingEl.setAttribute('aria-hidden', 'true');
+  typingEl.innerHTML = '<span class="musa-typing-text">Musa está escribiendo</span> <span class="musa-dots"><span></span><span></span><span></span></span>';
+  chatBox.appendChild(typingEl);
+
   const input = document.createElement('input');
   input.type = 'text';
   input.placeholder = 'Escribe tu mensaje...';
@@ -31,6 +41,35 @@ export function createMusaChatbot() {
     msg.textContent = text;
     chatBox.appendChild(msg);
     chatBox.scrollTop = chatBox.scrollHeight;
+    return msg;
+  }
+
+  // Efecto de tipeo: escribe el texto en el elemento de destino progresivamente
+  function typeTextIntoElement(element, text, speed = 20) {
+    return new Promise(resolve => {
+      let i = 0;
+      element.textContent = '';
+      const interval = setInterval(() => {
+        element.textContent += text.charAt(i);
+        i++;
+        chatBox.scrollTop = chatBox.scrollHeight;
+        if (i >= text.length) {
+          clearInterval(interval);
+          resolve();
+        }
+      }, speed);
+    });
+  }
+
+  function showTyping() {
+    typingEl.style.display = 'flex';
+    typingEl.setAttribute('aria-hidden', 'false');
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  function hideTyping() {
+    typingEl.style.display = 'none';
+    typingEl.setAttribute('aria-hidden', 'true');
   }
 
   // Evento enviar mensaje
@@ -39,12 +78,41 @@ export function createMusaChatbot() {
     if (!userMsg) return;
     addMessage(userMsg, 'user');
     input.value = '';
+
+    // Crear mensaje de MUSA vacío que iremos rellenando
+    const musaMsgEl = addMessage('', 'musa');
+
+    // Mostrar indicador de escritura
+    showTyping();
+
+    // Intentar recibir en streaming; onChunk recibirá fragmentos de texto
     try {
-      const musaReply = await sendMessageToMusa(userMsg);
-      // MUSA se autorefiera en femenino
-      addMessage(musaReply, 'musa');
+      const result = await sendMessageToMusaStream(userMsg, chunk => {
+        // Si el servidor envía chunks, los pegamos directamente (stream real)
+        musaMsgEl.textContent += chunk;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      });
+
+      if (!result.stream) {
+        // No hubo streaming real: aplicar efecto de escritura progresiva como fallback
+        await typeTextIntoElement(musaMsgEl, result.text, 18);
+      }
+      // Ocultar indicador cuando la respuesta terminó de mostrarse
+      hideTyping();
+      // Si hubo streaming real, el texto ya fue mostrado por chunks
     } catch (err) {
-      addMessage('Error: ' + err.message, 'musa');
+      // Ocultar indicador antes de intentar fallback
+      hideTyping();
+      // Si algo falla con streaming, intentar la ruta clásica y hacer typing
+      try {
+        showTyping();
+        const full = await sendMessageToMusa(userMsg);
+        await typeTextIntoElement(musaMsgEl, full, 18);
+        hideTyping();
+      } catch (e) {
+        hideTyping();
+        musaMsgEl.textContent = 'Error: ' + (e.message || 'Error en MUSA');
+      }
     }
   });
 

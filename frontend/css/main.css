@@ -1,7 +1,7 @@
 /* main.css - entry point ITCSS para importar todos los estilos */
 
 /* 1. Settings (variables, fuentes, etc.) */
-@import url("settings/settings.css");
+@import url("settings/variables.css");
 
 /* 2. Tools (mixins, helpers) */
 @import url("tools/tools.css");
@@ -18,15 +18,20 @@
 
 /* 6. Components (botones, tarjetas, navbar, etc.) */
 @import url("components/components.css");
+@import url("components/buttons.css");
+@import url("components/cart.css");
 
 /* 7. Utilities (helpers, utilidades) */
 @import url("utilities/utilities.css");
 
 /* 8. Base (estilos generales) */
-@import url("base/base.css");
+@import url("elements/base.css");
 
 /* 9. Musa chatbot */
 @import url("chatbot/musa-chatbot.css");
 
 /* 10. Páginas específicas */
 @import url("pages/home.css");
+@import url("pages/courses.css");
+@import url("pages/contact.css");
+@import url("pages/shop.css");

@@ -1,3 +1,55 @@
+/* Layout row para la página de inicio */
+.home-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.home-text {
+    flex: 2;
+    text-align: left;
+}
+
+.home-text h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+}
+
+.home-text p {
+    font-size: .8rem;
+    line-height: 1.2;
+    color: var(--color-text);
+}
+
+.home-image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-image img {
+    max-width: 450px;
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(124, 58, 237, 0.12);
+}
+
+@media (max-width: 900px) {
+    .home-row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .home-image img {
+        max-width: 100%;
+    }
+}
 /* home.css - estilos básicos para la página de inicio */
 
 .home-section {
@@ -7,12 +59,13 @@
     border-radius: 16px;
     box-shadow: 0 2px 12px rgba(124, 58, 237, 0.08);
     text-align: center;
-    max-width: 800px;
+    max-width: 1600px;
     margin: 32px auto;
+    width: 100%;
 }
 
 .home-section h1 {
-    font-size: 2.2rem;
+    font-size: var(--font-size-title);
     font-weight: 700;
     margin-bottom: 16px;
     color: var(--color-primary);

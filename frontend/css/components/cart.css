@@ -1,0 +1,107 @@
+/* Estilos para el componente Carrito (aside) */
+
+.cart-section {
+    box-sizing: border-box;
+    background: var(--color-surface);
+    border-radius: 10px;
+    padding: 1rem;
+    color: var(--color-text);
+    width: 100%;
+    max-width: 360px;
+    margin-top: 1.5rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.cart-section p {
+    margin: 0.6rem 0;
+    font-weight: 600;
+}
+
+.cart-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+}
+
+.cart-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.cart-list li:last-child {
+    border-bottom: none;
+}
+
+.cart-list li span {
+    font-size: 0.98rem;
+    color: var(--color-text);
+}
+
+.cart-remove-btn {
+    background: transparent;
+    color: var(--color-accent, #e11d48);
+    border: 1px solid transparent;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.8rem;
+}
+
+.cart-pay-btn {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-pay-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Móvil: mostrar como panel inferior ocultable (el JS controla display) */
+@media (max-width: 899px) {
+    .cart-section {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-width: 100%;
+        max-height: 60vh;
+        overflow-y: auto;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.12);
+        z-index: 1100;
+        display: none; /* el botón flotante controla su visibilidad */
+        padding: 1rem;
+    }
+}
+
+/* Desktop: mostrar el carrito como aside flotante (overlay) a la derecha */
+@media (min-width: 900px) {
+    .cart-section.cart-floating {
+        position: fixed;
+        right: 24px;
+        top: 96px; /* dejar espacio para header si existe */
+        width: 360px;
+        max-width: calc(100vw - 48px);
+        max-height: calc(100vh - 140px);
+        height: auto; /* crecerá según contenido hasta max-height */
+        overflow-y: auto;
+        margin: 0;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        z-index: 1200;
+        display: block;
+    }
+}

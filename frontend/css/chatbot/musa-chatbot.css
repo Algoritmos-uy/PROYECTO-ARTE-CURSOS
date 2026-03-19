@@ -11,6 +11,8 @@
     --musa-user-msg-bg: #e6f7ff;
     --musa-musa-msg-bg: #f3e6ff;
     --musa-primary: #7c3aed;
+    --musa-text-light: #111111;
+    --musa-text-dark: #f3f3f3;
     --musa-font: "Segoe UI", Arial, sans-serif;
 }
 
@@ -39,7 +41,8 @@ body:not([data-theme]) {
     position: fixed;
     bottom: 90px;
     right: 24px;
-    width: 320px;
+    width: 420px;
+    height: auto;
     max-width: 90vw;
     background: var(--musa-bg);
     border: 1px solid var(--musa-border);
@@ -73,7 +76,7 @@ body:not([data-theme]) {
 
 .musa-musa-msg {
     background: var(--musa-musa-msg-bg);
-    color: #7c3aed;
+    color: #111111;
     margin: 4px 0;
     padding: 8px 12px;
     border-radius: 12px;
@@ -115,4 +118,57 @@ body:not([data-theme]) {
 }
 .musa-chatbot button:hover {
     background: #5b21b6;
+}
+
+/* Indicador 'Musa está escribiendo' */
+.musa-typing {
+    display: none; /* se muestra dinámicamente */
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0;
+    padding: 6px 10px;
+    color: #666;
+    font-size: 0.94rem;
+}
+.musa-typing .musa-typing-text {
+    opacity: 0.95;
+}
+.musa-typing .musa-dots {
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+}
+.musa-typing .musa-dots span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.35;
+    transform: translateY(0);
+    animation: musa-dot 1s infinite ease-in-out;
+}
+.musa-typing .musa-dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+.musa-typing .musa-dots span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+.musa-typing .musa-dots span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes musa-dot {
+    0% {
+        opacity: 0.25;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-4px);
+    }
+    100% {
+        opacity: 0.25;
+        transform: translateY(0);
+    }
 }

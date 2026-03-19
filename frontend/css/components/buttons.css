@@ -1,0 +1,49 @@
+/* Estilos base para botones */
+
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.2s,
+        color 0.2s;
+    background: var(--color-primary, #7c3aed);
+    color: #fff;
+    z-index: 1;
+}
+
+.add-to-cart-btn {
+    background: var(--color-btn-bg, #7c3aed);
+    color: var(--color-btn-text, #000);
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.12);
+    border: 2px solid var(--color-primary, #7c3aed);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    outline: none;
+}
+
+.add-to-cart-btn:hover {
+    background: var(--color-btn-hover, #5b21b6);
+    color: var(--color-btn-text, #fff);
+    border-color: var(--color-secondary, #5b21b6);
+}
+
+.cart-remove-btn {
+    background: #e53e3e;
+    color: #fff;
+}
+.cart-remove-btn:hover {
+    background: #c53030;
+}
+
+.btn:hover {
+    background: var(--color-accent, #a78bfa);
+}
+
+.add-to-cart-btn:hover {
+    background: var(--color-accent, #a78bfa);
+}

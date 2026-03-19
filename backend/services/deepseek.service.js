@@ -14,11 +14,16 @@ const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
  */
 async function sendMessageToDeepSeek(message) {
   try {
+    // Prompt estricto para Musa
+    const strictPrompt = `Eres Musa, una asistente IA femenina de la plataforma de arte aplicada. Solo puedes responder preguntas sobre el contenido de la aplicación, productos, técnicas empleadas y cursos. No respondas nada fuera de esos temas. Siempre debes referirte a ti misma en femenino y como Musa. Si te preguntan algo fuera de esos temas, responde amablemente que solo puedes ayudar sobre la plataforma, productos, técnicas y cursos.`;
     const response = await axios.post(
       DEEPSEEK_API_URL,
       {
         model: 'deepseek-chat',
-        messages: [{ role: 'user', content: message }]
+        messages: [
+          { role: 'system', content: strictPrompt },
+          { role: 'user', content: message }
+        ]
       },
       {
         headers: {
